@@ -1,6 +1,10 @@
 package com.learn.zohky.itunesrss;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+
+import org.w3c.dom.Text;
 
 public class SelectRssActivity extends AppCompatActivity {
 
@@ -63,4 +69,61 @@ public class SelectRssActivity extends AppCompatActivity {
         sFeedType = (Spinner)findViewById(R.id.sFeedType);
         sFeedType.setAdapter(spinnerAdapter);
     }
+
+    public void noteClick(View view) {
+        copyToClip();
+        note();
+    }
+
+    public void youtubeSearch(){
+        Intent intent = new Intent(Intent.ACTION_SEARCH);
+        intent.setPackage("com.google.android.youtube");
+        intent.putExtra("query", "Android");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    public void youtube(){
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtube.com"));
+        startActivity(intent);
+    }
+
+    public void note(){
+        Intent intent = new Intent();
+//        intent.setAction(Intent.ACTION_SEND);
+        //ACTION_SEND  ACTION_SEARCH   ACTION_CREATE_DOCUMENT  ACTION_EDIT  ACTION_INSERT_OR_EDIT
+        // ACTION_OPEN_DOCUMENT  ACTION_PASTE  ACTION_PROCESS_TEXT
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("https://keep.google.com/u/0/#NOTE/1516815827953.351188419"));
+        intent.setPackage("com.google.android.keep");
+//        intent.setType("text/plain");
+//        intent.putExtra(Intent.EXTRA_TITLE,"title");
+//        intent.putExtra(Intent.EXTRA_PROCESS_TEXT, "pro");
+//        intent.putExtra(Intent.EXTRA_SUBJECT,"subject");
+//        intent.putExtra(Intent.EXTRA_TEXT, "text");
+//        intent.putExtra(Intent.EXTRA_PROCESS_TEXT, "asdasd");
+//        intent.putExtra("note", "asd");
+        startActivity(intent);
+    }
+
+    private void note2(){
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT,"subject");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+    }
+
+    private void copyToClip(){
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(this.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("Text", temp);
+        clipboard.setPrimaryClip(clip);
+    }
+
+
 }
+
+
+//https://keep.google.com/u/0/#LIST/1516815648634.286561972
+//https://keep.google.com/u/0/#NOTE/1516815827953.351188419
