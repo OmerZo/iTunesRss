@@ -18,29 +18,42 @@ import java.util.List;
 public class SongAdapter extends ArrayAdapter<Song>{
 
     List<Song> mSongList;
+    LayoutInflater layoutInflater;
 
     public SongAdapter(@NonNull Context context, int resource, @NonNull List<Song> songList) {
         super(context, resource, songList);
         this.mSongList = songList;
+        this.layoutInflater = LayoutInflater.from(context);
     }
 
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Song song = (Song) mSongList.get(position);
-        LayoutInflater inflater = LayoutInflater.from(getContext());
+        ViewHolder holder;
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.song_item, parent, false);
+            convertView = layoutInflater.inflate(R.layout.song_item, parent, false);
+            holder = new ViewHolder();
+            holder.tvSongName = (TextView)convertView.findViewById(R.id.tvItemName);
+            holder.ivSongArt = (ImageView)convertView.findViewById(R.id.ivSongArt);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
 
-        TextView tvSongName = (TextView)convertView.findViewById(R.id.tvItemName);
-        tvSongName.setText(song.getmName());
-        ImageView ivSongArt = (ImageView)convertView.findViewById(R.id.ivSongArt);
-        MainActivity mainActivity = (MainActivity) parent.getContext();
-//        ImageView ivTest = (ImageView)mainActivity.findViewById(R.id.ivTest);
-//        new DownLoadImageTask(ivTest).execute(song.getmArtworkUrl()); Not working!!
-        Picasso.with(mainActivity).load("http://is3.mzstatic.com/image/thumb/Music118/v4/b4/ab/ad/b4abadbc-36eb-86a6-94fb-4fa9f404e66c/source/200x200bb.png").into(ivSongArt);
+        Song song = (Song) mSongList.get(position);
+        holder.tvSongName.setText(song.getmName());
+
+        if(holder.ivSongArt != null) {
+            MainActivity mainActivity = (MainActivity) parent.getContext();
+//            new DownLoadImageTask(holder.ivSongArt).execute(song.getmArtworkUrl()); Less efficient (not handle cache)
+            Picasso.with(mainActivity).load(song.getmArtworkUrl()).into(holder.ivSongArt);
+        }
         return convertView;
+    }
+
+    private static class ViewHolder{
+        TextView tvSongName;
+        ImageView ivSongArt;
     }
 }
