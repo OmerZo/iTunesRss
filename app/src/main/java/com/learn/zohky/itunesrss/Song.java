@@ -9,6 +9,7 @@ public class Song {
     private String mName;
     private String mArtworkUrl;
 
+    public Song(){}
     public Song(String artistName, int id, String releaseDate, String name, String artworkUrl) {
         this.mArtistName = artistName;
         this.mId = id;
@@ -55,5 +56,16 @@ public class Song {
 
     public void setmArtworkUrl(String artworkUrl) {
         this.mArtworkUrl = artworkUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "Song{" +
+                "mArtistName='" + mArtistName + '\'' +
+                ", mId=" + mId +
+                ", mReleaseDate='" + mReleaseDate + '\'' +
+                ", mName='" + mName + '\'' +
+                ", mArtworkUrl='" + mArtworkUrl + '\'' +
+                '}';
     }
 }
