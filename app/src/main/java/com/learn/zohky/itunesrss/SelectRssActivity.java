@@ -90,11 +90,12 @@ public class SelectRssActivity extends AppCompatActivity {
 
     public void note(){
         Intent intent = new Intent();
+        String uri = "";
 //        intent.setAction(Intent.ACTION_SEND);
         //ACTION_SEND  ACTION_SEARCH   ACTION_CREATE_DOCUMENT  ACTION_EDIT  ACTION_INSERT_OR_EDIT
         // ACTION_OPEN_DOCUMENT  ACTION_PASTE  ACTION_PROCESS_TEXT
         intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("https://keep.google.com/u/0/#NOTE/1516815827953.351188419"));
+        intent.setData(Uri.parse(uri));
         intent.setPackage("com.google.android.keep");
 //        intent.setType("text/plain");
 //        intent.putExtra(Intent.EXTRA_TITLE,"title");
@@ -125,5 +126,4 @@ public class SelectRssActivity extends AppCompatActivity {
 }
 
 
-//https://keep.google.com/u/0/#LIST/1516815648634.286561972
-//https://keep.google.com/u/0/#NOTE/1516815827953.351188419
+
