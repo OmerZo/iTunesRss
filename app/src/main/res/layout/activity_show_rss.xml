@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.learn.zohky.itunesrss.MainActivity">
+    tools:context="com.learn.zohky.itunesrss.ShowRssActivity">
 
     <ListView
         android:id="@+id/lvSongs"

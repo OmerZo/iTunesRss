@@ -19,10 +19,12 @@ public class GetRssTask extends AsyncTask<Void, Void, Void> {
 
     private Activity activity;
     private ListView lvSongs;
+    private String rssUrl;
     private ArrayList<Song> songArrayList;
 
-    public GetRssTask(Activity activity){
+    public GetRssTask(Activity activity, String rssUrl){
         this.activity = activity;
+        this.rssUrl = rssUrl;
     }
 
     @Override
@@ -43,8 +45,8 @@ public class GetRssTask extends AsyncTask<Void, Void, Void> {
     private String getRestCall() {
         String result = "";
         try{
-            String urlStr = "https://rss.itunes.apple.com/api/v1/us/apple-music/hot-tracks/all/10/explicit.json";
-            URL url = new URL(urlStr);
+//            String urlStr = "https://rss.itunes.apple.com/api/v1/us/apple-music/hot-tracks/all/10/explicit.json";
+            URL url = new URL(rssUrl);
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 

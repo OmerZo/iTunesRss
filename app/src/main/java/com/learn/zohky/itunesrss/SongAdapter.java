@@ -45,9 +45,9 @@ public class SongAdapter extends ArrayAdapter<Song>{
         holder.tvSongName.setText(song.getmName());
 
         if(holder.ivSongArt != null) {
-            MainActivity mainActivity = (MainActivity) parent.getContext();
+            ShowRssActivity showRssActivity = (ShowRssActivity) parent.getContext();
 //            new DownLoadImageTask(holder.ivSongArt).execute(song.getmArtworkUrl()); Less efficient (not handle cache)
-            Picasso.with(mainActivity).load(song.getmArtworkUrl()).into(holder.ivSongArt);
+            Picasso.with(showRssActivity).load(song.getmArtworkUrl()).into(holder.ivSongArt);
         }
         return convertView;
     }
