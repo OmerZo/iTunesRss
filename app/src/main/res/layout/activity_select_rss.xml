@@ -9,30 +9,93 @@
     android:gravity="center"
     tools:context="com.learn.zohky.itunesrss.SelectRssActivity">
 
-    <Spinner
-        android:id="@+id/sCountry"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </Spinner>
 
-    <Spinner
-        android:id="@+id/sMediaType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </Spinner>
+        <TextView
+            style="@style/HeaderTextStyle"
+            android:text="Country" />
 
-    <Spinner
-        android:id="@+id/sFeedType"
-        android:layout_width="wrap_content"
+        <Spinner
+            android:gravity="center"
+            android:id="@+id/sCountry"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+        </Spinner>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </Spinner>
+
+        <TextView
+            style="@style/HeaderTextStyle"
+            android:text="Media Type" />
+
+        <Spinner
+            android:gravity="center"
+            android:id="@+id/sMediaType"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+        </Spinner>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/HeaderTextStyle"
+            android:text="Feed Type" />
+
+        <Spinner
+            android:gravity="center"
+            android:id="@+id/sFeedType"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+        </Spinner>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/HeaderTextStyle"
+            android:text="Results Limit"/>
+
 
     <EditText
+        style="CustomEditText"
         android:id="@+id/etResultsLimit"
+        android:textColor="@color/colorAccentBlue"
         android:text="10"
-        android:layout_width="match_parent"
+        android:maxLength="2"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:inputType="number"/>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/bSelect"
@@ -40,13 +103,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select"/>
-
-    <Button
-        android:id="@+id/bNote"
-        android:onClick="noteClick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="note"
-        android:visibility="gone"/>
 
 </LinearLayout>

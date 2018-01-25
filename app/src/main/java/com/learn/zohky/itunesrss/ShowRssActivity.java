@@ -3,6 +3,7 @@ package com.learn.zohky.itunesrss;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,10 +19,12 @@ public class ShowRssActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_rss);
+        setNoteEdit();
+        getRss();
+        setListeners();
+    }
 
-        Bundle extras = getIntent().getExtras();
-        String rssUrl = (String) extras.get("rssUrl");
-        new GetRssTask(this, rssUrl).execute();
+    private void setListeners() {
         ListView lvSongs = (ListView)findViewById(R.id.lvSongs);
         lvSongs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -41,6 +44,21 @@ public class ShowRssActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    private void getRss() {
+        Bundle extras = getIntent().getExtras();
+        String rssUrl = (String) extras.get("rssUrl");
+        new GetRssTask(this, rssUrl).execute();
+    }
+
+    private void setNoteEdit() {
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        if(((pref != null)) && (pref.contains("noteAdrrPref"))) {
+            EditText etNoteAdrr = (EditText)findViewById(R.id.etNoteAdrr);
+            String noteAdrrStr = pref.getString("noteAdrrPref", "");
+            etNoteAdrr.setText(noteAdrrStr);
+        }
     }
 
     public void youtubeSearch(String search){
@@ -64,5 +82,20 @@ public class ShowRssActivity extends AppCompatActivity {
         intent.setData(Uri.parse(uri));
         intent.setPackage("com.google.android.keep");
         startActivity(intent);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        saveNoteAdrr();
+    }
+
+    private void saveNoteAdrr() {
+        EditText etNoteAdrr = (EditText) findViewById(R.id.etNoteAdrr);
+        String strNoteAdrr = etNoteAdrr.getText().toString();
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("noteAdrrPref", strNoteAdrr);
+        editor.commit();
     }
 }

@@ -43,7 +43,7 @@ public class SelectRssActivity extends AppCompatActivity {
         String [] countryArr = new String[2];
         countryArr[0] = "il";
         countryArr[1] = "us";
-        SpinnerAdapter spinnerAdapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,countryArr);
+        SpinnerAdapter spinnerAdapter = new ArrayAdapter<String>(this,R.layout.spinner_item, R.id.tvSpinnerItem, countryArr);
         sCountry = (Spinner)findViewById(R.id.sCountry);
         sCountry.setAdapter(spinnerAdapter);
 
@@ -53,7 +53,7 @@ public class SelectRssActivity extends AppCompatActivity {
 //        mediaTypeArr[2] = "tv-shows";
 //        mediaTypeArr[3] = "movies";
 //        mediaTypeArr[4] = "podcasts";
-        spinnerAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, mediaTypeArr);
+        spinnerAdapter = new ArrayAdapter<String>(this,R.layout.spinner_item, R.id.tvSpinnerItem, mediaTypeArr);
         sMediaType = (Spinner)findViewById(R.id.sMediaType);
         sMediaType.setAdapter(spinnerAdapter);
 
@@ -62,7 +62,7 @@ public class SelectRssActivity extends AppCompatActivity {
         feedTypeArr[1] = "new-releases";
         feedTypeArr[2] = "top-albums";
         feedTypeArr[3] = "top-songs";
-        spinnerAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, feedTypeArr);
+        spinnerAdapter = new ArrayAdapter<String>(this,R.layout.spinner_item, R.id.tvSpinnerItem, feedTypeArr);
         sFeedType = (Spinner)findViewById(R.id.sFeedType);
         sFeedType.setAdapter(spinnerAdapter);
     }

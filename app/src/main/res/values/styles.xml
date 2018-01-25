@@ -8,4 +8,35 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppThemeBlue" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimaryBlue</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkBlue</item>
+        <item name="colorAccent">@color/colorAccentBlue</item>
+
+        <item name="colorButtonNormal">@color/colorPrimaryBlue</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDarkBlue</item>
+        <!--<item name="colorBackground">@color/backColor</item>-->
+        <item name="android:textColorPrimary">@color/textColor</item>
+        <item name="android:windowBackground">@color/backColor2</item>
+    </style>
+
+
+    <style name="HeaderTextStyle">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorPrimaryDarkBlue</item>
+    </style>
+
+
+    <style name="CustomEditText">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
+
 </resources>
